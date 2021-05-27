@@ -1,0 +1,14 @@
+name: ManHunt
+version: 1.0
+author: IronRevelation
+main: io.github.ironrevelation.manhunt.ManHunt
+api-version: 1.16
+commands:
+  start:
+    description: Start the run
+    usage: /<command>
+    permission: manhunt.start
+  runner:
+    description: add and remove runner
+    usage: /<command> [add|remove] [player]
+    permission: manhunt.runner
