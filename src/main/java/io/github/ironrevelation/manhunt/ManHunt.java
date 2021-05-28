@@ -35,8 +35,9 @@ public class ManHunt extends JavaPlugin {
             Lobby.createLobby();
             Bukkit.setDefaultGameMode(GameMode.ADVENTURE);
             world.setPVP(false);
+            world.setDifficulty(Difficulty.PEACEFUL);
         }
-        world.setDifficulty(Difficulty.EASY);
+
     }
 
     public static boolean isStarted()

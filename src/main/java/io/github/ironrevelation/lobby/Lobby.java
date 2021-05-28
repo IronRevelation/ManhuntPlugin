@@ -1,7 +1,10 @@
 package io.github.ironrevelation.lobby;
+import io.github.ironrevelation.manhunt.ManHunt;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Lobby {
@@ -75,5 +78,9 @@ public class Lobby {
             p.setGameMode(GameMode.ADVENTURE);
             p.sendTitle(ChatColor.GREEN + team + " WIN!!", "", 5, 100, 5);
         }
+        ManHunt.getInstance().getConfig().set("started", false);
+        ManHunt.getInstance().getConfig().set("runners", new ArrayList<String>());
+        ManHunt.getInstance().getConfig().set("hunters", new ArrayList<String>());
+        ManHunt.getInstance().saveConfig();
     }
 }

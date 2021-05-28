@@ -3,6 +3,7 @@ package io.github.ironrevelation.listeners;
 import io.github.ironrevelation.lobby.Lobby;
 import io.github.ironrevelation.teams.Teams;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,6 +25,9 @@ public class OnPlayerDeath implements Listener {
         {
             p.setGameMode(GameMode.SPECTATOR);
             Teams.removeRunner(p);
+            Location playerLocation = p.getLocation();
+            p.spigot().respawn();
+            p.teleport(playerLocation);
             if(Teams.getRunners().isEmpty())
             {
                 Lobby.declareWin("HUNTERS");

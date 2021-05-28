@@ -7,6 +7,8 @@ import io.github.ironrevelation.manhunt.*;
 import org.bukkit.entity.Player;
 import io.github.ironrevelation.teams.*;
 import org.bukkit.*;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class StartCommand implements CommandExecutor{
     @Override
@@ -25,11 +27,15 @@ public class StartCommand implements CommandExecutor{
             {
                 p.setGameMode(GameMode.SURVIVAL);
                 p.teleport(new Location(p.getWorld(), 20, p.getWorld().getHighestBlockYAt(20,20)+1, 20));
+                p.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 10, 10));
             }
-            new ReleaseHuntersRunnable().runTaskLater(ManHunt.getInstance(), (long) (ManHunt.getInstance().getConfig().getInt("grace-period")* 20L));
+            new ReleaseHuntersRunnable().runTaskLater(ManHunt.getInstance(), ManHunt.getInstance().getConfig().getInt("grace-period")* 20L);
             ManHunt.start();
             ManHunt.getInstance().getConfig().set("started", true);
             ManHunt.getInstance().saveConfig();
+            World world = Bukkit.getWorld("world");
+            assert world != null;
+            world.setDifficulty(Difficulty.EASY);
         }
         return true;
     }
